@@ -1,0 +1,86 @@
+public class AdminMenu {
+    public static void showMenu() {
+        while (true) {
+            System.out.println("\n==========================================");
+            System.out.println("          NAVEEN MART - ADMIN");
+            System.out.println("==========================================");
+            System.out.println("1. View Products");
+            System.out.println("2. Add Product");
+            System.out.println("3. Update Product");
+            System.out.println("4. Delete Product");
+            System.out.println("5. Logout");
+            System.out.print("Enter your choice: ");
+            int choice = NaveenMart1.sc.nextInt();
+            NaveenMart1.sc.nextLine();
+            switch (choice) {
+                case 1:
+                    ProductDisplay.showProducts();
+                    break;
+                case 2:
+                    addProduct();
+                    break;
+                case 3:
+                    updateProduct();
+                    break;
+                case 4:
+                    deleteProduct();
+                    break;
+                case 5:
+                    System.out.println("\nAdmin logged out successfully.");
+                    return;
+                default:
+                    System.out.println("\nInvalid choice!");
+            }
+        }
+    }
+    private static void addProduct() {
+        System.out.println("\n==========================================");
+        System.out.println("              ADD PRODUCT");
+        System.out.println("==========================================");
+        System.out.print("Enter Product Name: ");
+        String name = NaveenMart1.sc.nextLine();
+        System.out.print("Enter Price: ");
+        double price = NaveenMart1.sc.nextDouble();
+        NaveenMart1.sc.nextLine();
+        System.out.print("Enter Category: ");
+        String category = NaveenMart1.sc.nextLine();
+        Product product = NaveenMart1.productManager.addProduct( name, price, category);
+        System.out.println("\nProduct added successfully!");
+        System.out.println("Product ID: " + product.getId());
+    }
+    private static void updateProduct() {
+        ProductDisplay.showProducts();
+        System.out.print("\nEnter Product ID to update: ");
+        int id = NaveenMart1.sc.nextInt();
+        NaveenMart1.sc.nextLine();
+        Product product = NaveenMart1.productManager.findProduct(id);
+        if (product == null) {
+            System.out.println("Product not found!");
+            return;
+        }
+        System.out.print("Enter New Product Name: ");
+        String name = NaveenMart1.sc.nextLine();
+        System.out.print("Enter New Price: ");
+        double price = NaveenMart1.sc.nextDouble();
+        NaveenMart1.sc.nextLine();
+        System.out.print("Enter New Category: ");
+        String category = NaveenMart1.sc.nextLine();
+        product.setName(name);
+        product.setPrice(price);
+        product.setCategory(category);
+        System.out.println("\nProduct updated successfully!");
+    }
+    private static void deleteProduct() {
+        ProductDisplay.showProducts();
+        System.out.print("\nEnter Product ID to delete: ");
+        int id = NaveenMart1.sc.nextInt();
+        Product product = NaveenMart1.productManager.findProduct(id);
+        if (product == null) {
+            System.out.println("Product not found!");
+            return;
+        }
+        NaveenMart1.productManager.deleteProduct(id);
+        NaveenMart1.cart.removeProduct(id);
+        System.out.println("\nProduct deleted successfully!");
+    }
+}

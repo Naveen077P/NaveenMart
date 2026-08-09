@@ -1,0 +1,19 @@
+public class AdminLogin {
+    public static void login() {
+        System.out.println("\n==========================================");
+        System.out.println("             ADMIN LOGIN");
+        System.out.println("==========================================");
+        System.out.print("Enter Admin Username: ");
+        String username = NaveenMart1.sc.nextLine();
+        System.out.print("Enter Admin Password: ");
+        String password = NaveenMart1.sc.nextLine();
+        if (username.equals(NaveenMart1.ADMIN_USERNAME) && password.equals(NaveenMart1.ADMIN_PASSWORD)) {
+            System.out.println("\nAdmin Login Successful!");
+            System.out.println("Welcome, Admin!");
+            AdminMenu.showMenu();
+        } else {
+            System.out.println("\nAdmin Login Failed!");
+            System.out.println("Invalid admin username or password.");
+        }
+    }
+}

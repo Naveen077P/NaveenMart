@@ -1,0 +1,65 @@
+public class CartOperations {
+    public static void addToCart() {
+        ProductDisplay.showProducts();
+        if (NaveenMart1.productManager.getProducts().isEmpty()) {
+            return;
+        }
+        System.out.print("\nEnter Product ID: ");
+        int id = NaveenMart1.sc.nextInt();
+        Product selected = NaveenMart1.productManager.findProduct(id);
+        if (selected == null) {
+            System.out.println("Product not found!");
+            return;
+        }
+        System.out.print("Enter Quantity: ");
+        int quantity = NaveenMart1.sc.nextInt();
+        if (quantity <= 0) {
+            System.out.println("Invalid quantity!");
+            return;
+        }
+        NaveenMart1.cart.addProduct(id, quantity);
+        System.out.println("\nProduct added to cart!");
+        System.out.println("Product : " + selected.getName());
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Price   : ₹" + selected.getPrice());
+    }
+    public static void viewCart() {
+        System.out.println("\n==========================================");
+        System.out.println("               YOUR CART");
+        System.out.println("==========================================");
+        boolean empty = NaveenMart1.cart.isEmpty(NaveenMart1.productManager.getProducts());
+        System.out.printf("%-15s %-10s %-12s%n","Product", "Quantity", "Amount");
+        System.out.println("------------------------------------------");
+        for (Product p : NaveenMart1.productManager.getProducts()) {
+            int quantity = NaveenMart1.cart.getQuantity(p.getId());
+            if (quantity > 0) {
+                double amount = p.getPrice() * quantity;
+                System.out.printf("%-15s %-10d ₹%-11.2f%n",
+                        p.getName(), quantity, amount);
+            }
+        }
+        if (empty) {
+            System.out.println("Your cart is empty.");
+        } else {
+            System.out.println("------------------------------------------");
+            System.out.printf("Total Amount: ₹%.2f%n",
+                    NaveenMart1.cart.getTotal(
+                            NaveenMart1.productManager.getProducts()));
+        }
+    }
+    public static void removeFromCart() {
+        viewCart();
+        System.out.print("\nEnter Product ID to remove: ");
+        int id = NaveenMart1.sc.nextInt();
+        if (id < 0 || id >= 100) {
+            System.out.println("Invalid Product ID!");
+            return;
+        }
+        if (!NaveenMart1.cart.hasProduct(id)) {
+            System.out.println("This product is not in your cart.");
+            return;
+        }
+        NaveenMart1.cart.removeProduct(id);
+        System.out.println("Product removed from cart.");
+    }
+}

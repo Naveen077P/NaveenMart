@@ -1,0 +1,43 @@
+import java.util.Scanner;
+public class NaveenMart1 {
+    static Scanner sc = new Scanner(System.in);
+    static User registeredUser;
+    static final String ADMIN_USERNAME = "admin";
+    static final String ADMIN_PASSWORD = "admin123";
+    static ProductManager productManager = new ProductManager();
+    static Cart cart = new Cart();
+    public static void main(String[] args) {
+        productManager.loadDefaultProducts();
+        while (true) {
+            System.out.println("\n==========================================");
+            System.out.println("             NAVEEN MART");
+            System.out.println("       ONLINE SHOPPING SYSTEM");
+            System.out.println("==========================================");
+            System.out.println("1. Register");
+            System.out.println("2. User Login");
+            System.out.println("3. Admin Login");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+                    Registration.register();
+                    break;
+                case 2:
+                    UserLogin.login();
+                    break;
+                case 3:
+                    AdminLogin.login();
+                    break;
+                case 4:
+                    System.out.println("\nThank you for visiting Naveen Mart!");
+                    System.out.println("Goodbye!");
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("\nInvalid choice!");
+            }
+        }
+    }
+}

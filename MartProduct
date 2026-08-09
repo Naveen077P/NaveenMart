@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+public class ProductManager {
+    private final ArrayList<Product> products = new ArrayList<>();
+    private int nextProductId = 9;
+    public void loadDefaultProducts() {
+        products.add(new Product(1, "Rice", 60, "Grocery"));
+        products.add(new Product(2, "Sugar", 45, "Grocery"));
+        products.add(new Product(3, "Milk", 30, "Dairy"));
+        products.add(new Product(4, "Biscuits", 20, "Snacks"));
+        products.add(new Product(5, "Soap", 40, "Personal Care"));
+        products.add(new Product(6, "Shampoo", 120, "Personal Care"));
+        products.add(new Product(7, "Tea", 150, "Beverages"));
+        products.add(new Product(8, "Coffee", 180, "Beverages"));
+    }
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+    public Product findProduct(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+    public Product addProduct(String name, double price, String category) {
+        Product product = new Product(nextProductId, name, price, category);
+        products.add(product);
+        nextProductId++;
+        return product;
+    }
+    public boolean deleteProduct(int id) {
+        Product product = findProduct(id);
+        if (product == null) {
+            return false;
+        }
+        products.remove(product);
+        return true;
+    }
+}

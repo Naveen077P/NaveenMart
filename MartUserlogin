@@ -1,0 +1,33 @@
+public class UserLogin {
+
+    public static void login() {
+        System.out.println("\n==========================================");
+        System.out.println("               USER LOGIN");
+        System.out.println("==========================================");
+
+        if (NaveenMart1.registeredUser == null) {
+            System.out.println("No user account found.");
+            System.out.println("Please register first.");
+            return;
+        }
+
+        System.out.print("Enter Username: ");
+        String username = NaveenMart1.sc.nextLine();
+
+        System.out.print("Enter Password: ");
+        String password = NaveenMart1.sc.nextLine();
+
+        if (username.equals(NaveenMart1.registeredUser.getUsername())
+                && password.equals(NaveenMart1.registeredUser.getPassword())) {
+
+            System.out.println("\nLogin Successful!");
+            System.out.println("Welcome, "
+                    + NaveenMart1.registeredUser.getName() + "!");
+
+            UserMenu.showMenu();
+        } else {
+            System.out.println("\nLogin Failed!");
+            System.out.println("Invalid username or password.");
+        }
+    }
+}

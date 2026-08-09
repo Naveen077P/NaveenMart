@@ -1,0 +1,34 @@
+public class Registration {
+    public static void register() {
+        System.out.println("\n==========================================");
+        System.out.println("              REGISTER");
+        System.out.println("==========================================");
+        System.out.print("Enter Name: ");
+        String name = NaveenMart1.sc.nextLine();
+        System.out.print("Enter Email: ");
+        String email = NaveenMart1.sc.nextLine();
+        System.out.print("Enter Mobile Number: ");
+        String mobile = NaveenMart1.sc.nextLine();
+        System.out.print("Enter Username: ");
+        String username = NaveenMart1.sc.nextLine();
+        System.out.print("Enter Password: ");
+        String password = NaveenMart1.sc.nextLine();
+        System.out.print("Confirm Password: ");
+        String confirmPassword = NaveenMart1.sc.nextLine();
+        if (name.isEmpty() || email.isEmpty() || mobile.isEmpty()|| username.isEmpty() || password.isEmpty()) {
+            System.out.println("\nRegistration Failed!");
+            System.out.println("Please fill all the details.");
+            return;
+        }
+        if (!password.equals(confirmPassword)) {
+            System.out.println("\nRegistration Failed!");
+            System.out.println("Passwords do not match.");
+            return;
+        }
+        NaveenMart1.registeredUser =new User(name, email, mobile, username, password);
+        System.out.println("\n==========================================");
+        System.out.println("       REGISTRATION SUCCESSFUL!");
+        System.out.println("==========================================");
+        System.out.println("Welcome to Naveen Mart, " + name + "!");
+    }
+}

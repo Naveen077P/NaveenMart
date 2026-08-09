@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+public class Cart {
+    private final int[] cartQuantity = new int[100];
+    public boolean isEmpty(ArrayList<Product> products) {
+        for (Product product : products) {
+            if (cartQuantity[product.getId()] > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public void addProduct(int productId, int quantity) {
+        cartQuantity[productId] += quantity;
+    }
+    public int getQuantity(int productId) {
+        return cartQuantity[productId];
+    }
+    public boolean hasProduct(int productId) {
+        return productId >= 0 &&
+               productId < cartQuantity.length &&
+               cartQuantity[productId] > 0;
+    }
+    public void removeProduct(int productId) {
+        cartQuantity[productId] = 0;
+    }
+    public double getTotal(ArrayList<Product> products) {
+        double total = 0;
+        for (Product product : products) {
+            int quantity = cartQuantity[product.getId()];
+            if (quantity > 0) {
+                total += product.getPrice() * quantity;
+            }
+        }
+        return total;
+    }
+    public void clear() {
+        for (int i = 0; i < cartQuantity.length; i++) {
+            cartQuantity[i] = 0;
+        }
+    }
+}

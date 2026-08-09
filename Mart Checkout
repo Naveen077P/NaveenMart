@@ -1,0 +1,58 @@
+public class Checkout {
+    public static void process() {
+        if (NaveenMart1.cart.isEmpty(NaveenMart1.productManager.getProducts())) {
+            System.out.println("\nYour cart is empty.");
+            System.out.println("Please add products before checkout.");
+            return;
+        }
+        double total = NaveenMart1.cart.getTotal(NaveenMart1.productManager.getProducts());
+        System.out.println("\n==========================================");
+        System.out.println("             NAVEEN MART");
+        System.out.println("               BILL");
+        System.out.println("==========================================");
+        System.out.println("Customer: "+ NaveenMart1.registeredUser.getName());
+        System.out.println("------------------------------------------");
+        for (Product p : NaveenMart1.productManager.getProducts()) {
+            int quantity = NaveenMart1.cart.getQuantity(p.getId());
+            if (quantity > 0) {
+                double amount = p.getPrice() * quantity;
+                System.out.printf("%-15s x %-3d ₹%.2f%n",
+                        p.getName(), quantity, amount);
+            }
+        }
+        System.out.println("------------------------------------------");
+        System.out.printf("Total Amount: ₹%.2f%n", total);
+        System.out.println("\nPayment Methods:");
+        System.out.println("1. Cash on Delivery");
+        System.out.println("2. UPI");
+        System.out.println("3. Card");
+        System.out.print("Select Payment Method: ");
+        int payment = NaveenMart1.sc.nextInt();
+        String paymentMethod;
+        switch (payment) {
+            case 1:
+                paymentMethod = "Cash on Delivery";
+                break;
+            case 2:
+                paymentMethod = "UPI";
+                break;
+            case 3:
+                paymentMethod = "Card";
+                break;
+            default:
+                paymentMethod = "Cash on Delivery";
+                System.out.println("Invalid choice. Cash on Delivery selected.");
+        }
+        System.out.println("\n==========================================");
+        System.out.println("          ORDER CONFIRMED!");
+        System.out.println("==========================================");
+        System.out.println("Customer: "+ NaveenMart1.registeredUser.getName());
+        System.out.println("Payment : " + paymentMethod);
+        System.out.printf("Amount  : ₹%.2f%n", total);
+        System.out.println("------------------------------------------");
+        System.out.println("Thank you for shopping at Naveen Mart!");
+        System.out.println("Your order has been placed.");
+        System.out.println("==========================================");
+        NaveenMart1.cart.clear();
+    }
+}

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 public class ProductManager {
     private final ArrayList<Product> products = new ArrayList<>();
     private int nextProductId = 10;
-    public void loadDefaultProducts() {
+    public void loadDefaultProducts(){
         products.add(new Product(1, "Rice", 60, "grocery"));
         products.add(new Product(2, "Sugar", 45, "grocery"));
         products.add(new Product(3, "Milk", 30, "dairy"));

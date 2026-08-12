@@ -1,3 +1,4 @@
+import java.util.*;
 public class Registration {
     public static void register() {
         System.out.println("\n==========================================");

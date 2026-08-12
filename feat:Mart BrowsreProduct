@@ -1,3 +1,4 @@
+import java.util.*;
 public class ProductDisplay {
     public static void showProducts() {
         System.out.println("\n==========================================");
